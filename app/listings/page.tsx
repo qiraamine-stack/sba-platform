@@ -8,7 +8,7 @@ export default function ListingsPage() {
   const [industry, setIndustry] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/listings/${industry ? `?industry=${industry}` : ""}`)
+    fetch(`https://web-production-19eab.up.railway.app/api/listings/${industry ? `?industry=${industry}` : ""}`)
       .then(r => r.json())
       .then(data => { setListings(data); setLoading(false); });
   }, [industry]);

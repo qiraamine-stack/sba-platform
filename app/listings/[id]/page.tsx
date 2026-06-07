@@ -10,7 +10,7 @@ export default function ListingPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/listings/${id}`)
+    fetch(`https://web-production-19eab.up.railway.app/api/listings/${id}`)
       .then(r => r.json())
       .then(data => { setListing(data); setLoading(false); });
   }, [id]);

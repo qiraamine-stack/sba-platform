@@ -17,7 +17,7 @@ export default function NewListingPage() {
 
   const submit = async () => {
     setLoading(true);
-    const res = await fetch("http://localhost:8000/api/listings/", {
+    const res = await fetch("https://web-production-19eab.up.railway.app/api/listings/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

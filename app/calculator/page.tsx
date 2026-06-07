@@ -16,7 +16,7 @@ export default function CalculatorPage() {
   const calculate = async () => {
     setLoading(true);
     const [valRes, loanRes] = await Promise.all([
-      fetch("http://localhost:8000/api/calculator/valuate", {
+      fetch("https://web-production-19eab.up.railway.app/api/calculator/valuate", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           revenue: +form.revenue, cogs: +form.cogs,
@@ -27,7 +27,7 @@ export default function CalculatorPage() {
           industry: form.industry
         })
       }),
-      fetch("http://localhost:8000/api/calculator/loan", {
+      fetch("https://web-production-19eab.up.railway.app/api/calculator/loan", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           business_price: +form.business_price,
