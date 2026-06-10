@@ -14,6 +14,7 @@ export default function Navbar() {
   }, [pathname]);
 
   const logout = () => {
+    if (!confirm("Are you sure you want to sign out?")) return;
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
