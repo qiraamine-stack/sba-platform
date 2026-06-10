@@ -174,7 +174,7 @@ export default function CalculatorPage() {
           {loading ? "Calculating..." : "Calculate Valuation & SBA Loan"}
         </button>
 
-        {results && (
+    
           {results && (
           <div>
           <button onClick={exportPDF}
