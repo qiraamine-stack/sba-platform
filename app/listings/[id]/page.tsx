@@ -15,7 +15,7 @@ export default function ListingPage() {
       .then(data => { setListing(data); setLoading(false); });
   }, [id]);
 
-  const fmt = (n: number) => "$" + n?.toLocaleString();
+  const fmt = (n: number) => n ? "$" + n.toLocaleString() : "—";
 
   if (loading) return <div className="min-h-screen bg-gray-50 flex items-center justify-center"><p className="text-gray-400">Loading...</p></div>;
   if (!listing) return <div className="min-h-screen bg-gray-50 flex items-center justify-center"><p className="text-gray-400">Listing not found</p></div>;
@@ -28,9 +28,10 @@ export default function ListingPage() {
         <div className="bg-white rounded-xl shadow p-8 mb-6">
           <div className="flex justify-between items-start mb-4">
             <div>
-              <div className="flex gap-2 mb-3">
+              <div className="flex gap-2 mb-3 flex-wrap">
                 <span className="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded-full capitalize">{listing.industry}</span>
-                {listing.sba_eligible && <span className="text-xs font-medium bg-green-50 text-green-600 px-2 py-1 rounded-full">✅ SBA Eligible</span>}
+                {listing.sba_eligible && <span className="text-xs font-medium bg-green-50 text-green-600 px-2 py-1 rounded-full">SBA Eligible</span>}
+                {listing.real_estate_included && <span className="text-xs font-medium bg-purple-50 text-purple-600 px-2 py-1 rounded-full">Real Estate Included</span>}
               </div>
               <h1 className="text-3xl font-bold text-gray-900">{listing.title}</h1>
               <p className="text-gray-500 mt-1">{listing.location} · Est. {listing.year_established}</p>
@@ -47,9 +48,12 @@ export default function ListingPage() {
           <div className="bg-white rounded-xl shadow p-6">
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Financial Overview</h2>
             {[
+              { label: "Asking Price", val: listing.asking_price },
               { label: "Annual Revenue", val: listing.annual_revenue },
               { label: "Annual Net Income", val: listing.annual_net_income },
-              { label: "Asking Price", val: listing.asking_price },
+              { label: "EBITDA", val: listing.ebitda },
+              { label: "Monthly Rent", val: listing.monthly_rent },
+              { label: "Monthly Expenses", val: listing.monthly_expenses },
             ].map(r => (
               <div key={r.label} className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-sm text-gray-600">{r.label}</span>
@@ -65,6 +69,7 @@ export default function ListingPage() {
               { label: "Location", val: listing.location },
               { label: "Employees", val: listing.employees },
               { label: "Year Established", val: listing.year_established },
+              { label: "Real Estate Included", val: listing.real_estate_included ? "Yes" : "No" },
               { label: "Reason for Sale", val: listing.reason_for_sale },
             ].map(r => (
               <div key={r.label} className="flex justify-between py-2 border-b border-gray-100">
@@ -75,7 +80,7 @@ export default function ListingPage() {
           </div>
         </div>
 
-        <div className="bg-blue-50 rounded-xl p-6 flex items-center justify-between">
+        <div className="bg-blue-50 rounded-xl p-6 flex items-center justify-between mb-6">
           <div>
             <h2 className="text-lg font-semibold text-gray-900 mb-1">Run SBA Loan Calculator</h2>
             <p className="text-sm text-gray-600">See if you can finance this business with an SBA loan</p>
@@ -86,7 +91,7 @@ export default function ListingPage() {
           </Link>
         </div>
 
-        <div className="bg-white rounded-xl shadow p-6 mt-6">
+        <div className="bg-white rounded-xl shadow p-6">
           <h2 className="text-lg font-semibold text-gray-800 mb-2">Contact Seller</h2>
           <p className="text-gray-600">{listing.seller_name}</p>
           <a href={`mailto:${listing.seller_email}`} className="text-blue-600 hover:underline text-sm">{listing.seller_email}</a>
