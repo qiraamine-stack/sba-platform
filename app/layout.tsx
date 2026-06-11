@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "SBA Business Valuation Platform",
     description: "Free SBA loan calculator and business valuation tools for buyers and sellers.",
-    url: "https://sba-platform.vercel.app",
+    url: "https://buywithsba.com",
     siteName: "SBA Platform",
     type: "website",
   },
