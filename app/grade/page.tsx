@@ -16,6 +16,7 @@ export default function GradePage() {
   });
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [showShare, setShowShare] = useState(false);
 
   const handle = (e: any) => {
     const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
@@ -170,11 +171,32 @@ export default function GradePage() {
               </div>
               {result.summary && <p className="text-blue-100 text-sm italic">"{result.summary}"</p>}
             </div>
-            <button onClick={() => {
-              const text = `Business Deal Analysis from buywithsba.com\n\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\nPrice Rating: ${result.priceRating}\nSDE Multiple: ${result.actualMultiple}x (avg ${result.benchmarkMultiple}x)\nDSCR: ${result.dscr}\nFair Value: ${fmt(result.fairValue)}\n\n"${result.summary}"\n\nAnalyze any business free at buywithsba.com`;
-              navigator.clipboard.writeText(text);
-              alert("Analysis copied! Paste it on Instagram, Twitter, or anywhere.");
-            }}
+            {showShare && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
+                <div className="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-sm">
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">Share This Analysis</h3>
+                  <p className="text-sm text-gray-500 mb-5">Choose where to share</p>
+                  {[
+                    { name: "WhatsApp", color: "bg-green-500 hover:bg-green-600", icon: "💬", url: `https://wa.me/?text=${encodeURIComponent(`Business Deal Analysis\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\nPrice Rating: ${result.priceRating}\nSDE Multiple: ${result.actualMultiple}x\nDSCR: ${result.dscr}\nFair Value: ${fmt(result.fairValue)}\n\n"${result.summary}"\n\nAnalyze any business free at buywithsba.com/grade`)}` },
+                    { name: "Facebook", color: "bg-blue-600 hover:bg-blue-700", icon: "👥", url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://buywithsba.com/grade")}&quote=${encodeURIComponent(`Business Grade: ${result.finalGrade}/10 — ${result.priceRating}. ${result.summary}`)}` },
+                    { name: "Twitter / X", color: "bg-black hover:bg-gray-800", icon: "🐦", url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(`Just analyzed a business on @buywithsba\n\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\n${result.priceRating} at ${result.actualMultiple}x SDE\n\n"${result.summary}"\n\nAnalyze yours free:`)} &url=${encodeURIComponent("https://buywithsba.com/grade")}` },
+                    { name: "Email", color: "bg-gray-600 hover:bg-gray-700", icon: "✉️", url: `mailto:?subject=${encodeURIComponent(`Business Deal Analysis — Grade ${result.finalGrade}/10`)}&body=${encodeURIComponent(`Here is a business deal analysis from buywithsba.com\n\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\nPrice Rating: ${result.priceRating}\nSDE Multiple: ${result.actualMultiple}x (industry avg ${result.benchmarkMultiple}x)\nDSCR: ${result.dscr}\nFair Value: ${fmt(result.fairValue)}\n\nAI Analysis: "${result.summary}"\n\nAnalyze any business free at https://buywithsba.com/grade`)}` },
+                  ].map(s => (
+                    <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
+                      onClick={() => setShowShare(false)}
+                      className={`flex items-center gap-3 w-full text-white font-semibold py-3 px-4 rounded-xl mb-3 transition ${s.color}`}>
+                      <span className="text-xl">{s.icon}</span>
+                      <span>Share on {s.name}</span>
+                    </a>
+                  ))}
+                  <button onClick={() => setShowShare(false)}
+                    className="w-full text-gray-500 text-sm py-2 hover:text-gray-700">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+            <button onClick={() => setShowShare(true)}
               className="w-full mb-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-xl transition">
               Share This Analysis
             </button>
