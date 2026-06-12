@@ -103,8 +103,8 @@ export default function GradePage() {
     <main className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">Business Grade Calculator</h1>
-          <p className="text-gray-500 text-lg">Enter the business numbers and get an instant AI-powered grade and valuation analysis</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-3">Deal Analyzer</h1>
+          <p className="text-gray-500 text-lg">Enter any business numbers and get an instant grade, valuation range, and AI-powered analysis</p>
         </div>
 
         <div className="bg-white rounded-xl shadow p-6 mb-6">
@@ -144,7 +144,7 @@ export default function GradePage() {
 
         <button onClick={grade} disabled={loading}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition text-lg mb-8">
-          {loading ? "Analyzing Business..." : "Grade This Business"}
+          {loading ? "Analyzing Deal..." : "Analyze This Deal"}
         </button>
 
         {result && (
