@@ -149,6 +149,35 @@ export default function GradePage() {
 
         {result && (
           <div>
+            
+            <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl p-6 mb-6 text-white text-center" id="share-card">
+              <p className="text-blue-200 text-sm mb-1">buywithsba.com — Deal Analyzer</p>
+              <p className="text-4xl font-black mb-1">{result.finalGrade}/10</p>
+              <p className="text-xl font-bold mb-3">{gradeLabel(result.finalGrade)}</p>
+              <div className="grid grid-cols-3 gap-3 mb-4">
+                <div className="bg-white bg-opacity-20 rounded-lg p-2">
+                  <p className="text-xs text-blue-200">Price Rating</p>
+                  <p className="font-bold text-sm">{result.priceRating}</p>
+                </div>
+                <div className="bg-white bg-opacity-20 rounded-lg p-2">
+                  <p className="text-xs text-blue-200">SDE Multiple</p>
+                  <p className="font-bold text-sm">{result.actualMultiple}x</p>
+                </div>
+                <div className="bg-white bg-opacity-20 rounded-lg p-2">
+                  <p className="text-xs text-blue-200">DSCR</p>
+                  <p className="font-bold text-sm">{result.dscr}</p>
+                </div>
+              </div>
+              {result.summary && <p className="text-blue-100 text-sm italic">"{result.summary}"</p>}
+            </div>
+            <button onClick={() => {
+              const text = `Business Deal Analysis from buywithsba.com\n\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\nPrice Rating: ${result.priceRating}\nSDE Multiple: ${result.actualMultiple}x (avg ${result.benchmarkMultiple}x)\nDSCR: ${result.dscr}\nFair Value: ${fmt(result.fairValue)}\n\n"${result.summary}"\n\nAnalyze any business free at buywithsba.com`;
+              navigator.clipboard.writeText(text);
+              alert("Analysis copied! Paste it on Instagram, Twitter, or anywhere.");
+            }}
+              className="w-full mb-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-xl transition">
+              Share This Analysis
+            </button>
             <div className="bg-white rounded-xl shadow p-8 mb-6 text-center">
               <p className="text-gray-500 mb-2">Overall Grade</p>
               <p className={`text-8xl font-black mb-2 ${gradeColor(result.finalGrade)}`}>{result.finalGrade}</p>
