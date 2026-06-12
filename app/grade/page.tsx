@@ -156,17 +156,17 @@ export default function GradePage() {
               <p className="text-4xl font-black mb-1">{result.finalGrade}/10</p>
               <p className="text-xl font-bold mb-3">{gradeLabel(result.finalGrade)}</p>
               <div className="grid grid-cols-3 gap-3 mb-4">
-                <div className="bg-white bg-opacity-20 rounded-lg p-2">
-                  <p className="text-xs text-white font-medium">Price Rating</p>
-                  <p className="font-bold text-white text-sm">{result.priceRating}</p>
+                <div className="bg-white rounded-lg p-2">
+                  <p className="text-xs text-gray-500 font-medium">Price Rating</p>
+                  <p className="font-bold text-gray-900 text-sm">{result.priceRating}</p>
                 </div>
-                <div className="bg-white bg-opacity-20 rounded-lg p-2">
-                  <p className="text-xs text-white font-medium">SDE Multiple</p>
-                  <p className="font-bold text-white text-sm">{result.actualMultiple}x</p>
+                <div className="bg-white rounded-lg p-2">
+                  <p className="text-xs text-gray-500 font-medium">SDE Multiple</p>
+                  <p className="font-bold text-gray-900 text-sm">{result.actualMultiple}x</p>
                 </div>
-                <div className="bg-white bg-opacity-20 rounded-lg p-2">
-                  <p className="text-xs text-white font-medium">DSCR</p>
-                  <p className="font-bold text-white text-sm">{result.dscr}</p>
+                <div className="bg-white rounded-lg p-2">
+                  <p className="text-xs text-gray-500 font-medium">DSCR</p>
+                  <p className="font-bold text-gray-900 text-sm">{result.dscr}</p>
                 </div>
               </div>
               {result.summary && <p className="text-blue-100 text-sm italic">"{result.summary}"</p>}
