@@ -155,20 +155,7 @@ export default function GradePage() {
               <p className="text-blue-200 text-sm mb-1">buywithsba.com — Deal Analyzer</p>
               <p className="text-4xl font-black mb-1">{result.finalGrade}/10</p>
               <p className="text-xl font-bold mb-3">{gradeLabel(result.finalGrade)}</p>
-              <div className="grid grid-cols-3 gap-3 mb-4">
-                <div className="bg-white rounded-lg p-2">
-                  <p className="text-xs text-gray-500 font-medium">Price Rating</p>
-                  <p className="font-bold text-gray-900 text-sm">{result.priceRating}</p>
-                </div>
-                <div className="bg-white rounded-lg p-2">
-                  <p className="text-xs text-gray-500 font-medium">SDE Multiple</p>
-                  <p className="font-bold text-gray-900 text-sm">{result.actualMultiple}x</p>
-                </div>
-                <div className="bg-white rounded-lg p-2">
-                  <p className="text-xs text-gray-500 font-medium">DSCR</p>
-                  <p className="font-bold text-gray-900 text-sm">{result.dscr}</p>
-                </div>
-              </div>
+
               {result.summary && <p className="text-blue-100 text-sm italic">"{result.summary}"</p>}
             </div>
             {showShare && (
@@ -215,6 +202,20 @@ export default function GradePage() {
               )}
             </div>
 
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="bg-white rounded-xl shadow p-4 text-center">
+                <p className="text-xs text-gray-500 mb-1 font-medium">Price Rating</p>
+                <p className="text-lg font-black text-gray-900">{result.priceRating}</p>
+              </div>
+              <div className="bg-white rounded-xl shadow p-4 text-center">
+                <p className="text-xs text-gray-500 mb-1 font-medium">SDE Multiple</p>
+                <p className="text-lg font-black text-gray-900">{result.actualMultiple}x <span className="text-xs text-gray-400">avg {result.benchmarkMultiple}x</span></p>
+              </div>
+              <div className="bg-white rounded-xl shadow p-4 text-center">
+                <p className="text-xs text-gray-500 mb-1 font-medium">DSCR</p>
+                <p className={`text-lg font-black ${result.dscr >= 1.25 ? "text-green-600" : "text-red-600"}`}>{result.dscr}</p>
+              </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               <div className="bg-white rounded-xl shadow p-5 text-center">
                 <p className="text-sm text-gray-500 mb-1">Price Rating</p>
