@@ -157,16 +157,16 @@ export default function GradePage() {
               <p className="text-xl font-bold mb-3">{gradeLabel(result.finalGrade)}</p>
               <div className="grid grid-cols-3 gap-3 mb-4">
                 <div className="bg-white bg-opacity-20 rounded-lg p-2">
-                  <p className="text-xs text-blue-200">Price Rating</p>
-                  <p className="font-bold text-sm">{result.priceRating}</p>
+                  <p className="text-xs text-white font-medium">Price Rating</p>
+                  <p className="font-bold text-white text-sm">{result.priceRating}</p>
                 </div>
                 <div className="bg-white bg-opacity-20 rounded-lg p-2">
-                  <p className="text-xs text-blue-200">SDE Multiple</p>
-                  <p className="font-bold text-sm">{result.actualMultiple}x</p>
+                  <p className="text-xs text-white font-medium">SDE Multiple</p>
+                  <p className="font-bold text-white text-sm">{result.actualMultiple}x</p>
                 </div>
                 <div className="bg-white bg-opacity-20 rounded-lg p-2">
-                  <p className="text-xs text-blue-200">DSCR</p>
-                  <p className="font-bold text-sm">{result.dscr}</p>
+                  <p className="text-xs text-white font-medium">DSCR</p>
+                  <p className="font-bold text-white text-sm">{result.dscr}</p>
                 </div>
               </div>
               {result.summary && <p className="text-blue-100 text-sm italic">"{result.summary}"</p>}
@@ -180,7 +180,7 @@ export default function GradePage() {
                     { name: "WhatsApp", color: "bg-green-500 hover:bg-green-600", icon: "💬", url: `https://wa.me/?text=${encodeURIComponent(`Business Deal Analysis\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\nPrice Rating: ${result.priceRating}\nSDE Multiple: ${result.actualMultiple}x\nDSCR: ${result.dscr}\nFair Value: ${fmt(result.fairValue)}\n\n"${result.summary}"\n\nAnalyze any business free at buywithsba.com/grade`)}` },
                     { name: "Facebook", color: "bg-blue-600 hover:bg-blue-700", icon: "👥", url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://buywithsba.com/grade")}&quote=${encodeURIComponent(`Business Grade: ${result.finalGrade}/10 — ${result.priceRating}. ${result.summary}`)}` },
                     { name: "Twitter / X", color: "bg-black hover:bg-gray-800", icon: "🐦", url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(`Just analyzed a business on @buywithsba\n\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\n${result.priceRating} at ${result.actualMultiple}x SDE\n\n"${result.summary}"\n\nAnalyze yours free:`)} &url=${encodeURIComponent("https://buywithsba.com/grade")}` },
-                    { name: "Email", color: "bg-gray-600 hover:bg-gray-700", icon: "✉️", url: `mailto:?subject=${encodeURIComponent(`Business Deal Analysis — Grade ${result.finalGrade}/10`)}&body=${encodeURIComponent(`Here is a business deal analysis from buywithsba.com\n\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\nPrice Rating: ${result.priceRating}\nSDE Multiple: ${result.actualMultiple}x (industry avg ${result.benchmarkMultiple}x)\nDSCR: ${result.dscr}\nFair Value: ${fmt(result.fairValue)}\n\nAI Analysis: "${result.summary}"\n\nAnalyze any business free at https://buywithsba.com/grade`)}` },
+                    { name: "Gmail", color: "bg-red-500 hover:bg-red-600", icon: "📧", url: `https://mail.google.com/mail/?view=cm&su=${encodeURIComponent(`Business Deal Analysis — Grade ${result.finalGrade}/10`)}&body=${encodeURIComponent(`Here is a business deal analysis from buywithsba.com\n\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\nPrice Rating: ${result.priceRating}\nSDE Multiple: ${result.actualMultiple}x (industry avg ${result.benchmarkMultiple}x)\nDSCR: ${result.dscr}\nFair Value: ${fmt(result.fairValue)}\n\nAI Analysis: "${result.summary}"\n\nAnalyze any business free at https://buywithsba.com/grade`)}` },
                   ].map(s => (
                     <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
                       onClick={() => setShowShare(false)}
