@@ -164,13 +164,20 @@ export default function GradePage() {
                   <h3 className="text-lg font-bold text-gray-900 mb-1">Share This Analysis</h3>
                   <p className="text-sm text-gray-500 mb-5">Choose where to share</p>
                   {[
+                    { name: "Instagram", color: "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600", icon: "📸", url: "https://www.instagram.com/", action: "copy" },
                     { name: "WhatsApp", color: "bg-green-500 hover:bg-green-600", icon: "💬", url: `https://wa.me/?text=${encodeURIComponent(`Business Deal Analysis\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\nPrice Rating: ${result.priceRating}\nSDE Multiple: ${result.actualMultiple}x\nDSCR: ${result.dscr}\nFair Value: ${fmt(result.fairValue)}\n\n"${result.summary}"\n\nAnalyze any business free at buywithsba.com/grade`)}` },
                     { name: "Facebook", color: "bg-blue-600 hover:bg-blue-700", icon: "👥", url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://buywithsba.com/grade")}&quote=${encodeURIComponent(`Business Grade: ${result.finalGrade}/10 — ${result.priceRating}. ${result.summary}`)}` },
                     { name: "Twitter / X", color: "bg-black hover:bg-gray-800", icon: "🐦", url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(`Just analyzed a business on @buywithsba\n\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\n${result.priceRating} at ${result.actualMultiple}x SDE\n\n"${result.summary}"\n\nAnalyze yours free:`)} &url=${encodeURIComponent("https://buywithsba.com/grade")}` },
                     { name: "Gmail", color: "bg-red-500 hover:bg-red-600", icon: "📧", url: `https://mail.google.com/mail/?view=cm&su=${encodeURIComponent(`Business Deal Analysis — Grade ${result.finalGrade}/10`)}&body=${encodeURIComponent(`Here is a business deal analysis from buywithsba.com\n\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\nPrice Rating: ${result.priceRating}\nSDE Multiple: ${result.actualMultiple}x (industry avg ${result.benchmarkMultiple}x)\nDSCR: ${result.dscr}\nFair Value: ${fmt(result.fairValue)}\n\nAI Analysis: "${result.summary}"\n\nAnalyze any business free at https://buywithsba.com/grade`)}` },
                   ].map(s => (
                     <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
-                      onClick={() => setShowShare(false)}
+                      onClick={() => {
+                        if (s.name === "Instagram") {
+                          navigator.clipboard.writeText(`Business Deal Analysis\nGrade: ${result.finalGrade}/10 — ${gradeLabel(result.finalGrade)}\nPrice Rating: ${result.priceRating}\nSDE Multiple: ${result.actualMultiple}x\nDSCR: ${result.dscr}\n\n"${result.summary}"\n\nAnalyze any business free at buywithsba.com/grade`);
+                          alert("Analysis copied! Now paste it as your Instagram caption.");
+                        }
+                        setShowShare(false);
+                      }}
                       className={`flex items-center gap-3 w-full text-white font-semibold py-3 px-4 rounded-xl mb-3 transition ${s.color}`}>
                       <span className="text-xl">{s.icon}</span>
                       <span>Share on {s.name}</span>
