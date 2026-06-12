@@ -25,6 +25,7 @@ export default function Navbar() {
     { href: "/listings", label: "Browse Listings" },
     { href: "/listings/new", label: "List a Business" },
     { href: "/calculator", label: "Calculator" },
+    { href: "/grade", label: "Grade a Business" },
   ];
 
   return (
