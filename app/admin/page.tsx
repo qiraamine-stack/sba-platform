@@ -23,10 +23,10 @@ export default function AdminPage() {
   const fetchData = async () => {
     const token = localStorage.getItem("token");
     const [uRes, lRes] = await Promise.all([
-      fetch("https://web-production-19eab.up.railway.app/api/auth/users", {
+      fetch("https://web-production-19eab.up.railway.app/api/admin/users", {
         headers: { Authorization: `Bearer ${token}` }
       }),
-      fetch("https://web-production-19eab.up.railway.app/api/listings/all", {
+      fetch("https://web-production-19eab.up.railway.app/api/admin/listings", {
         headers: { Authorization: `Bearer ${token}` }
       })
     ]);
